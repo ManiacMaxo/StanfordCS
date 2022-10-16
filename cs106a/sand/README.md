@@ -365,7 +365,7 @@ An optional third parameter specifies how many pixels wide each square should be
 
 $ **python3 sand.py 100 50 4**
 
-![alt: sand screen with small pixels](homework-sand-screen2.png)
+![alt: sand screen with small pixels](https://web.stanford.edu/class/cs106a/handouts_w2021/homework-sand-screen2.png)
 
 The Sand program is pretty demanding on your computer. It runs a lot of computation without pause. You may notice the fans on your laptop spinning up. At the upper right of the window is a little gray number, which is the frames-per-second (fps) the program is achieving at that moment, like 31 or 52. The animation has a more fluid look with fps of, say, 50 or higher.
 
