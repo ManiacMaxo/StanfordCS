@@ -6,9 +6,13 @@ Part-A: organizing the bulk data
 """
 
 import sys
+from pathlib import Path
+from typing import Dict, List
+
+Names = Dict[str, Dict[int, int]]
 
 
-def add_name(names, year, rank, name):
+def add_name(names: Names, year: int, rank: int, name: str):
     """
     Add the given data: int year, int rank, str name
     to the given names dict and return it.
@@ -17,10 +21,17 @@ def add_name(names, year, rank, name):
     {'Abe': {2000: 10}}
     >>> # pass - more tests TBD
     """
-    pass
+    if name not in names:
+        names.update({name: {}})
+
+    if names[name].get(year) is None:
+        # otherwise it will overwrite the existing value
+        names[name].update({year: rank})
+
+    return names
 
 
-def add_file(names, filename):
+def add_file(names: Names, filename: str):
     """
     Given a names dict and babydata.txt filename, add the file's data
     to the dict and return it.
@@ -32,18 +43,31 @@ def add_file(names, filename):
     >>> add_file({'Bob': {2000: 1}, 'Alice': {2000: 1}, 'Cindy': {2000: 2}}, 'small-2010.txt')
     {'Bob': {2000: 1, 2010: 2}, 'Alice': {2000: 1, 2010: 2}, 'Cindy': {2000: 2}, 'Yot': {2010: 1}, 'Zena': {2010: 1}}
     """
-    pass
+    year, *lines = Path(filename).read_text().splitlines()
+
+    for line in lines:
+        rank, m_name, f_name = line.strip().split(",")
+        add_name(names, int(year), int(rank), m_name)
+        add_name(names, int(year), int(rank), f_name)
+
+    return names
 
 
-def read_files(filenames):
+def read_files(filenames: List[str]) -> Names:
     """
     Given list of filenames, build and return a names dict
     of all their data.
     """
-    pass
+
+    names: Names = {}
+
+    for filename in filenames:
+        add_file(names, filename)
+
+    return names
 
 
-def search_names(names, target):
+def search_names(names: Names, target: str) -> List[str]:
     """
     Given names dict and a target string,
     return a sorted list of all the name strings
@@ -51,10 +75,12 @@ def search_names(names, target):
     Not case sensitive.
     (Code and tests TBD)
     """
-    pass
+    return sorted(
+        [name for name in names.keys() if target.casefold() in name.casefold()]
+    )
 
 
-def print_names(names):
+def print_names(names: Names):
     """
     (provided)
     Given names dict, print out all its data, one name per line.
@@ -82,8 +108,8 @@ def main():
     filenames = args
 
     # Check if we are doing search, set target variable
-    target = ''
-    if len(args) >= 2 and args[0] == '-search':
+    target = ""
+    if len(args) >= 2 and args[0] == "-search":
         target = args[1]
         filenames = args[2:]  # Change filenames to skip first 2
 
@@ -99,5 +125,5 @@ def main():
         print_names(names)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

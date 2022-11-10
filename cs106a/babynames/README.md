@@ -25,7 +25,7 @@ Let's see what form the data is in to start with. At the Social Security [baby n
 | 3    | Matthew     | Madison     |
 | 4    | Joshua      | Ashley      |
 | 5    | Christopher | Sarah       |
-| ...  | ...         | ...         |
+| ...  |
 
 In this data set, rank 1 means the most popular name, rank 2 means next most popular, and so on down through rank 1000. The data is divided into "male" and "female" columns. (To be strictly accurate, at birth when this data is collected, not all babies are categorized as male or female. That's rare enough to not affect the numbers at this level.)
 
@@ -61,11 +61,11 @@ However, the most interesting analysis of the data requires organizing it by **n
 
 We'll say that the "names" dict structure for this program has a key for every name. The value for each name is a nested dict, mapping int year to int rank:
 
-```json
+```python
 {
-'Aaden': {2010: 560},
-'Aaliyah': {2000: 211, 2010: 56},
-...
+    "Aaden": { 2010: 560 },
+    "Aaliyah": { 2000: 211, 2010: 56 }
+    # ...
 }
 ```
 
@@ -89,7 +89,7 @@ to the given names dict and return it.
 """
 ```
 
-The provided 'abe' test hits the case where the passed in dict is empty, so both the name and the year are new. Write at least 2 additional tests where the name is not-new: test year-new and test year-not-new. The add_name() function is short but dense. Doctests are a good fit for this situation, letting you explicitly identify and work out the various cases.
+The provided 'abe' test hits the case where the passed in dict is empty, so both the name and the year are new. Write at least 2 additional tests where the name is not-new: test year-new and test year-not-new. The `add_name()` function is short but dense. Doctests are a good fit for this situation, letting you explicitly identify and work out the various cases.
 
 ## Issue: Name Appears Twice
 
@@ -139,7 +139,7 @@ For reference, here is the contents of the small files:
 2,Bob,Alice
 ```
 
-Each line from the text file ends with a '\\n', so we typically remove that with `line = line.strip()`. Use split() to separate the words from the commas.
+Each line from the text file ends with a '\\n', so we typically remove that with `line = line.strip()`. Use `split()` to separate the words from the commas.
 
 For this data set, you need to treat the first line of the file differently than all the other lines. The standard for-line-in-file does not work well for that pattern, but there are other ways to get the lines of a text file. Here is a friendly reminder of three ways in Python to read a file. In this case, the `f.readlines()` function is a good fit.
 
@@ -174,13 +174,13 @@ Write code for `read_files()` which takes a list of filenames, building and retu
 
 ## d. search_names()
 
-Write code for `search_names()` which searches for a target string and returns a sorted list of all the name strings that match the target (no year or rank data). In this case, the target matches a name, not-case sensitive, if the target appears anywhere in the name. (Sorting is in the Friday lecture.) For example the target strings 'aa' and 'AA' both match 'Aaliyah' and 'Ayaan'. Return the empty list if no names match the target string. This function is called by main() for the -search command line argument.
+Write code for `search_names()` which searches for a target string and returns a sorted list of all the name strings that match the target (no year or rank data). In this case, the target matches a name, not-case sensitive, if the target appears anywhere in the name. (Sorting is in the Friday lecture.) For example the target strings 'aa' and 'AA' both match 'Aaliyah' and 'Ayaan'. Return the empty list if no names match the target string. This function is called by `main()` for the -search command line argument.
 
 Write at least 3 Doctests for `search_names()` which is the most algorithmic. You can make up a tiny names dict just for the tests.
 
 ## Provided: main() and print_names()
 
-We've provided the main() function. Given 1 or more baby data file arguments, main() reads them in with your read_files() function, and then calls the provided print_names() function (2 lines long!) to print all the data out.
+We've provided the `main()` function. Given 1 or more baby data file arguments, `main()` reads them in with your `read_files()` function, and then calls the provided `print_names()` function (2 lines long!) to print all the data out.
 
 The files small-2000.txt small-2010.txt have just a few test names, so they are good to hand-check that your output is correct, and of course your Doctests are working on your decomposed functions to check them individually. The output should be the same if small-2010.txt is loaded before small-2000.txt.
 
@@ -199,7 +199,7 @@ Zena \[(2010, 1)\]
 
 I believe this is the [correct meme](https://cheezburger.com/3914695680) for this part of the homework.
 
-The small files test that the code is working correctly, but are no fun. The provided main() function looks at all the files listed on the command line, and loads them all by calling your read_files() function in a loop. You can take a look at 4 decades of data with the following command in the terminal (use the tab-key, to complete file names without all the typing).
+The small files test that the code is working correctly, but are no fun. The provided `main()` function looks at all the files listed on the command line, and loads them all by calling your `read_files()` function in a loop. You can take a look at 4 decades of data with the following command in the terminal (use the tab-key, to complete file names without all the typing).
 
 ```bash
 $ **python3 babynames.py baby-1980.txt baby-1990.txt baby-2000.txt baby-2010.txt**
@@ -234,7 +234,7 @@ With the baby-\*.txt technique, the command line loads all the files, running th
 
 ## Search
 
-Organizing all the data and dumping it out is impressive, but it is a blunt instrument. Main() connects to your search function like this: if the first 2 command line args are "-search _target_", then main() reads in all the data and calls your search_names() function to find matching names and print them. Here is an example with the search target "aa":
+Organizing all the data and dumping it out is impressive, but it is a blunt instrument. `main()` connects to your search function like this: if the first 2 command line args are "-search _target_", then main() reads in all the data and calls your `search_names()` function to find matching names and print them. Here is an example with the search target "aa":
 
 ```bash
 $ **python3 babynames.py -search aa baby-2000.txt baby-2010.txt**
