@@ -67,8 +67,8 @@ def is_move_ok(grid: GridType, x_from: int, y_from: int, x_to: int, y_to: int):
         return False
 
     if (
-        x_to in (x_from - 1, x_from + 1)
-        and y_to == y_from + 1
+        y_to == y_from + 1
+        and x_to in (x_from - 1, x_from + 1)
         and grid.get(x_to, y_from) == "r"
     ):
         # down-left or down-right and rock in the way

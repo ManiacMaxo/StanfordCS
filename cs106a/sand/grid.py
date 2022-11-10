@@ -54,6 +54,8 @@ class Grid(Generic[_T]):
     Has .width .height size properties
     """
 
+    array: List[List[Union[_T, None]]]
+
     def __init__(self, width: int, height: int):
         """
         Create grid width by height.
