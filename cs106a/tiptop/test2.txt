@@ -1,0 +1,4 @@
+@alice^#BBB^#aaa
+@BOB^#z^#aaa^#bbb
+@aardvark^#AAA
+@woot
