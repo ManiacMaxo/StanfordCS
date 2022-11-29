@@ -19,14 +19,18 @@ CHANNELS = 3
 
 
 def pix_dist2(pix1: Pix, pix2: Pix):
-    x_dist = abs(pix1[0] - pix2[0])
-    y_dist = abs(pix1[1] - pix2[1])
-    z_dist = abs(pix1[2] - pix2[2])
+    x_dist = (pix1[0] - pix2[0]) ** 2
+    y_dist = (pix1[1] - pix2[1]) ** 2
+    z_dist = (pix1[2] - pix2[2]) ** 2
     return x_dist + y_dist + z_dist
 
 
 def average_pix(pixs: List[Pix]) -> Pix:
-    return tuple(sum([pix[i] for pix in pixs]) / len(pixs) for i in range(CHANNELS))
+    length = len(pixs)
+    x_avg = sum([pix[0] for pix in pixs]) / length
+    y_avg = sum([pix[1] for pix in pixs]) / length
+    z_avg = sum([pix[2] for pix in pixs]) / length
+    return (x_avg, y_avg, z_avg)
 
 
 def best_pix(pixs: List[Pix]) -> Pix:
@@ -65,19 +69,17 @@ def solve(images: List[SimpleImage], mode: Optional[str]):
     height = images[0].height
     solution = SimpleImage.blank(width, height)
 
+    if mode == "-good":
+        fn = good_apple_pix
+    elif mode is None:
+        fn = best_pix
+    else:
+        raise ValueError("Invalid mode")
+
     for x in range(width):
         for y in range(height):
             pixs = [image.get_pix(x, y) for image in images]
-            pix: Pix = (0, 0, 0)
-
-            if mode == "-good":
-                pix = good_apple_pix(pixs)
-            elif mode is None:
-                pix = best_pix(pixs)
-            else:
-                raise ValueError("Invalid mode")
-
-            solution.set_pix(x, y, pix)
+            solution.set_pix(x, y, fn(pixs))
 
     print(f"Time: {(time() - start_time):.2f}s")
     solution.show()
