@@ -4,8 +4,6 @@
 Stanford CS106A Ghost Project
 """
 
-import math
-import os
 import sys
 from pathlib import Path
 from time import time
@@ -21,7 +19,10 @@ CHANNELS = 3
 
 
 def pix_dist2(pix1: Pix, pix2: Pix):
-    return sum((pix1[i] - pix2[i]) ** 2 for i in range(CHANNELS))
+    x_dist = abs(pix1[0] - pix2[0])
+    y_dist = abs(pix1[1] - pix2[1])
+    z_dist = abs(pix1[2] - pix2[2])
+    return x_dist + y_dist + z_dist
 
 
 def average_pix(pixs: List[Pix]) -> Pix:
@@ -58,6 +59,7 @@ def solve(images: List[SimpleImage], mode: Optional[str]):
     """
 
     start_time = time()
+    print("Solving...")
 
     width = images[0].width
     height = images[0].height
@@ -72,11 +74,13 @@ def solve(images: List[SimpleImage], mode: Optional[str]):
                 pix = good_apple_pix(pixs)
             elif mode is None:
                 pix = best_pix(pixs)
+            else:
+                raise ValueError("Invalid mode")
 
             solution.set_pix(x, y, pix)
 
-    solution.show()
     print(f"Time: {(time() - start_time):.2f}s")
+    solution.show()
 
 
 def jpgs_in_dir(dir: str) -> List[Path]:

@@ -36,6 +36,11 @@ requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 summary = "Cross-platform colored terminal text."
 
 [[package]]
+name = "flameprof"
+version = "0.4"
+summary = "cProfile flamegraph generator"
+
+[[package]]
 name = "mypy-extensions"
 version = "0.4.3"
 summary = "Experimental type system extensions for programs checked with the mypy typechecker."
@@ -78,7 +83,7 @@ summary = "A lil' TOML parser"
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:5434b96666fa056f8ef20dc000d3667b157922a26c3e664b7ed5b88ac1ca3827"
+content_hash = "sha256:f5b85bb72c2ccd4a66df3f129bc0b01fe336d4be687539c0ad5e0661cf94fb14"
 
 [metadata.files]
 "beautifulsoup4 4.11.1" = [
@@ -115,6 +120,9 @@ content_hash = "sha256:5434b96666fa056f8ef20dc000d3667b157922a26c3e664b7ed5b88ac
 "colorama 0.4.5" = [
     {url = "https://files.pythonhosted.org/packages/2b/65/24d033a9325ce42ccbfa3ca2d0866c7e89cc68e5b9d92ecaba9feef631df/colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
     {url = "https://files.pythonhosted.org/packages/77/8b/7550e87b2d308a1b711725dfaddc19c695f8c5fa413c640b2be01662f4e6/colorama-0.4.5-py2.py3-none-any.whl", hash = "sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"},
+]
+"flameprof 0.4" = [
+    {url = "https://files.pythonhosted.org/packages/c0/e7/114f6710d31854b694598f577f9eac49d7f38b7fb8a55e86e2d3f848fd1c/flameprof-0.4.tar.gz", hash = "sha256:dbc86d4190cbbba624f1e0a40f44d9db96138e27534d83c8ef42d420857875a3"},
 ]
 "mypy-extensions 0.4.3" = [
     {url = "https://files.pythonhosted.org/packages/5c/eb/975c7c080f3223a5cdaff09612f3a5221e4ba534f7039db34c35d95fa6a5/mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},

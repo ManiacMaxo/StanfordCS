@@ -10,6 +10,7 @@ dependencies = [
     "numpy>=1.23.4",
     "beautifulsoup4>=4.11.1",
     "Pillow>=9.3.0",
+    "flameprof>=0.4",
 ]
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -20,3 +21,6 @@ build-backend = "pdm.pep517.api"
 
 [tool]
 [tool.pdm]
+
+[tool.pdm.scripts]
+profile = "flameprof -o profile.svg -r"
